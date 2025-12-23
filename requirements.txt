@@ -3,3 +3,4 @@ selenium
 undetected-chromedriver
 fake-useragent
 numpy
+python-dotenv

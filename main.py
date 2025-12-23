@@ -1,9 +1,13 @@
 import argparse
+import os
+from dotenv import load_dotenv
 from fulz_input import interactive_fulz_input, load_fulz_json
 from profile_generator import generate_profile
 from injector import inject_artifacts
 from warmup import run_warmup
 from mistral_api import ask_mistral
+
+load_dotenv()
 
 def main():
     parser = argparse.ArgumentParser(description="Quantum Profile Warmup CLI")
@@ -12,7 +16,7 @@ def main():
     parser.add_argument('--target', type=str, help='Target system')
     parser.add_argument('--minutes', type=int, default=30, help='Warmup session duration')
     parser.add_argument('--headless', action='store_true', help='Run browser headless')
-    parser.add_argument('--mistral-api-key', type=str, default='', help='Mistral AI API key')
+    parser.add_argument('--mistral-api-key', type=str, default=os.getenv('MISTRAL_API_KEY', ''), help='Mistral AI API key')
     parser.add_argument('--output', type=str, default='out', help='Output directory')
 
     args = parser.parse_args()

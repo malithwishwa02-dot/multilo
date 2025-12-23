@@ -5,3 +5,5 @@ batch_profiles/
 *.json
 !batch_profiles/summary.json
 !workflow_report_*.json
+.env
+
