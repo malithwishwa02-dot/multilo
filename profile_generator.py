@@ -3,6 +3,28 @@ import os
 import json
 import random
 
+def luhn_check(card_number):
+    """
+    Checks if a card number is valid according to the Luhn algorithm.
+    """
+    if not card_number or not card_number.isdigit():
+        return False
+        
+    digits = [int(d) for d in str(card_number)]
+    checksum = 0
+    reverse_digits = digits[::-1]
+    
+    for i, digit in enumerate(reverse_digits):
+        if i % 2 == 1:
+            doubled = digit * 2
+            if doubled > 9:
+                doubled -= 9
+            checksum += doubled
+        else:
+            checksum += digit
+            
+    return checksum % 10 == 0
+
 def generate_profile(fulz, output_dir):
     """
     Generates a profile based on fulz input and saves it to output_dir.
