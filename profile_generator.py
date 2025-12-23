@@ -77,6 +77,12 @@ def generate_profile(fulz, output_dir):
     
     # 2. Use QuantumMultiloginGenerator to create files
     merchant = fulz.get('target', 'amazon.com')
+    # Clean merchant string
+    if merchant.startswith('http'):
+        merchant = merchant.split('://')[-1]
+    if merchant.startswith('www.'):
+        merchant = merchant[4:]
+        
     if not output_dir:
         output_dir = "out"
         
